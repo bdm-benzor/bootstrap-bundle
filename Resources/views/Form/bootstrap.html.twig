@@ -194,7 +194,7 @@
 
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
         {% if empty_value is not none %}
-            <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% else %} value=""{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+            <option {% if required %} disabled="disabled"{% if value is empty %} selected="selected"{% endif %}{% endif %} value="">{{ empty_value|trans({}, translation_domain) }}</option>
         {% endif %}
         {% if preferred_choices|length > 0 %}
             {% set options = preferred_choices %}
@@ -247,10 +247,10 @@
         {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
         {% set class = 'col-' ~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
-        <div class="form-group {% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group {% if form.vars.errors|length > 0 %} has-error{% endif %}">
             <div class="{{ class }}">
     {% elseif no_form_group is not defined or no_form_group == false %}
-        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group{% if form.vars.errors|length > 0 %} has-error{% endif %}">
     {% endif %}
         <div class="checkbox">
             {% if label is not sameas(false) %}
@@ -265,7 +265,7 @@
                 {% endif %}
                 <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
                     {{ block('checkbox_widget') }}
-                    {{ label|trans({}, translation_domain) }}
+                    {{ label|trans({}, translation_domain)|raw }}
                 </label>
             {% else %}
                 {{ block('checkbox_widget') }}
@@ -303,10 +303,10 @@
         {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
         {% set label_col = label_col|default(bootstrap_get_label_col()) %}
         {% set class = ' col-'~ col_size ~ '-' ~ widget_col ~ ' col-' ~ col_size ~ '-offset-' ~ label_col %}
-        <div class="form-group {% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group {% if form.vars.errors|length > 0 %} has-error{% endif %}">
             <div class="{{ class }}">
     {% elseif no_form_group is not defined or no_form_group == false %}
-        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+        <div class="form-group{% if form.vars.errors|length > 0 %} has-error{% endif %}">
     {% endif %}
 
         <div class="radio">
@@ -322,7 +322,7 @@
                 {% endif %}
                 <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
                     {{ block('radio_widget') }}
-                    {{ label|trans({}, translation_domain) }}
+                    {{ label|trans({}, translation_domain)|raw }}
                 </label>
             {% else %}
                 {{ block('radio_widget') }}
@@ -545,7 +545,7 @@
         {% if label is empty %}
             {% set label = name|humanize %}
         {% endif %}
-        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain)|raw }}</label>
     {% endif %}
 {% endspaceless %}
 {% endblock form_label %}
@@ -585,7 +585,7 @@
     {% set label_col = label_col|default(bootstrap_get_label_col()) %}
     {% set widget_col = widget_col|default(bootstrap_get_widget_col()) %}
 
-    <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
+    <div class="form-group{% if form.vars.errors|length > 0 %} has-error{% endif %}">
         {% if style == 'horizontal' %}
             {{ form_label(form) }}
             <div class="col-{{ col_size }}-{{ widget_col }}">
@@ -712,6 +712,10 @@
         {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' form-' ~ style)|trim }) %}
         {{ bootstrap_set_style(style) }}
     {% endif %}
+    
+    {% if form.vars.errors|length > 0 %}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' has-error')|trim }) %}
+    {% endif %}
 
     {% if col_size is defined %}
         {{ bootstrap_set_col_size(col_size) }}
@@ -792,7 +796,7 @@
         {% endif %}
         <ul{% if not global_errors %} class="help-block"{% endif %}>
             {% for error in errors %}
-                <li>{{ error.message|trans(error.messageParameters, translation_domain) }}</li>
+                <li>{{ error.message }}</li>
             {% endfor %}
         </ul>
         {% if global_errors == true %}

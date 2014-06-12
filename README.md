@@ -1,7 +1,7 @@
 [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com)
 =================
 
-BraincraftedBootstrapBundle helps you integrate [Bootstrap](http://getbootstrap.com) in your [Symfony2](http://symfony.com) project.
+BraincraftedBootstrapBundle helps you integrate [Bootstrap](http://getbootstrap.com) in your [Symfony2](http://symfony.com) project. BootstrapBundle also supports the official Sass port of Bootstrap and Font Awesome.
 
 [![Build Status](https://secure.travis-ci.org/braincrafted/bootstrap-bundle.png)](http://travis-ci.org/braincrafted/bootstrap-bundle)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/badges/quality-score.png?s=28e07378182fddc3cdf2c764437a72b6eaf55a45)](https://scrutinizer-ci.com/g/braincrafted/bootstrap-bundle/)
@@ -10,7 +10,7 @@ BraincraftedBootstrapBundle helps you integrate [Bootstrap](http://getbootstrap.
 [![Latest Stable Version](https://poser.pugx.org/braincrafted/bootstrap-bundle/v/stable.png)](https://packagist.org/packages/braincrafted/bootstrap-bundle)
 [![Total Downloads](https://poser.pugx.org/braincrafted/bootstrap-bundle/downloads.png)](https://packagist.org/packages/braincrafted/bootstrap-bundle)
 
-Developed by [Florian Eckerstorfer](http://florian.ec) and many amazing [contributors](https://github.com/braincrafted/bootstrap-bundle/contributors).
+Developed by [Florian Eckerstorfer](http://florian.ec) and amazing [contributors](https://github.com/braincrafted/bootstrap-bundle/contributors).
 
 
 Installation
@@ -86,7 +86,7 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
             <td>v1.9.*</td>
         </tr>
         <tr>
-            <td><strong>v2.0.*</strong></td>
+            <td><strong>v2.0.*</strong><br><strong>v2.1.*</strong></td>
             <td>v2.3.*<br>v2.4.*</td>
             <td>v3.0.*<br>v3.1.*</td>
             <td>v1.10.*<br>v1.11.*</td>
@@ -97,6 +97,23 @@ This bundle has two main dependencies, Symfony and Bootstrap. The following tabl
 
 Changelog
 ---------
+
+### Version 2.1.0-beta1 (29 May 2014)
+
+- [#238](https://github.com/braincrafted/bootstrap-bundle/pull/238) Add empty `value` field when `empty_value` is not null in choice field
+- [#239](https://github.com/braincrafted/bootstrap-bundle/pull/239) Removed translation_domain from error messages
+- [#214](https://github.com/braincrafted/bootstrap-bundle/pull/214) Check for `preSubmit` errors (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#240](https://github.com/braincrafted/bootstrap-bundle/pull/240) Include `head` block in default layout
+
+### Version 2.1.0-alpha1 (16 May 2014)
+
+- [#203](https://github.com/braincrafted/bootstrap-bundle/issues/203) Add support for `bootstrap-sass` (by [sandello-alkr](https://github.com/sandello-alkr) and [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#160](https://github.com/braincrafted/bootstrap-bundle/issues/160) Add support for Font Awesome (by [florianeckerstorfer](https://github.com/florianeckerstorfer))
+- [#229](https://github.com/braincrafted/bootstrap-bundle/pull/229) Fix `bootstrap.js` path in default layout (by [nonlux](https://github.com/nonlux))
+- [#221](https://github.com/braincrafted/bootstrap-bundle/issues/221) Fix generated key for nested collections (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#220](https://github.com/braincrafted/bootstrap-bundle/pull/220) Add option to configure icon prefix (by [llwt](https://github.com/llwt))
+- [#206](https://github.com/braincrafted/bootstrap-bundle/issues/206) Use `raw` filter for form labels (by [sandello-alkr](https://github.com/sandello-alkr))
+- [#209](https://github.com/braincrafted/bootstrap-bundle/issues/209) Fixed compatibility issues with KnpMenu (by [mbutkereit](https://github.com/mbutkereit))
 
 ### Version 2.0.1 (3 April 2014)
 
